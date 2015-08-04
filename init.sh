@@ -37,7 +37,20 @@ read -p "do you want to install popup crontab? (Y/N)" yn
 case $yn in
 	[Yy]*)
 		ln -sf $PWD/task-popup.sh ~/.local/bin/
-		(crontab -l; echo "*/30 * * * * task-popup.sh")|crontab -
+		(crontab -l; echo "*/30 * * * * DISPLAY=0: ~/.local/bin/task-popup.sh")|crontab -
+		break;;
+	[Nn]*) break;;
+	*) echo "please answer yes or no";;
+esac
+done
+
+while true
+do
+read -p "do you want to install sync crontab? (Y/N)" yn
+case $yn in
+	[Yy]*)
+		ln -sf $PWD/task-popup.sh ~/.local/bin/
+		(crontab -l; echo "*/30 * * * * ~/.local/bin/task sync")|crontab -
 		break;;
 	[Nn]*) break;;
 	*) echo "please answer yes or no";;

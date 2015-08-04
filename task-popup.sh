@@ -3,7 +3,7 @@
 # For cron: */30 * * * * DISPLAY=:0.0 /home/User/configs/TaskNotify.sh
 # Requires linux with notify-send and canberra-gtk-play which are default on Ubuntu
 
-num=`task active | wc -l`
+num=`~/.local/bin/task active | wc -l`
 if [ $num -gt "1" ]
   then
     notify-send "Active Tasks" "`task active | tail -n +3 | head -n -1`" 
